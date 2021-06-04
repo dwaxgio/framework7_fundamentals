@@ -20,6 +20,10 @@ import App from '../app.f7.html';
 // IMPORTACION DE METHODS
 import Methods from './methods.js';
 
+// PARA USAR $$ = DOM7
+//var $$ = Dom7;
+import $$ from 'dom7';
+
 var app = new Framework7({
   name: 'prueba', // App name
   theme: 'auto', // Automatic theme detection
@@ -48,5 +52,17 @@ var app = new Framework7({
     covertToPopover: false,
     grid: true,
     backdrop: false
-  }
+  },  
+
+  
+
+});
+
+// ALERTA MANIPULANDO DOM
+// $(document).on("click",".alert-text-title",function() {
+//   alert("Evento desde elemento de formulario");
+// });
+
+$$(document).on("click", ".btnAlert", function(){
+  alert("Alerta desde app.js, mostrado en página");
 });

@@ -4,6 +4,7 @@ import FormPage from "../pages/form.f7.html";
 // PAGINA PERSONAL
 //import pagina from '../pages/pagina.html';
 import initPage from "../AppPage/init.f7.html";
+import descargaJsonPage from "../AppPage/descargajson.f7.html";
 
 import DynamicRoutePage from "../pages/dynamic-route.f7.html";
 import RequestAndLoad from "../pages/request-and-load.f7.html";
@@ -16,10 +17,6 @@ var routes = [
     path: "/",
     component: HomePage,
   },
-  // {
-  //   path: '/',
-  //   component: initPage,
-  // },
   {
     path: "/about/",
     component: AboutPage,
@@ -27,12 +24,8 @@ var routes = [
   {
     path: "/form/",
     component: FormPage,
-  },
-  // {
-  //   path: '/init/',
-  //   component: initPage,
-  // },
-
+  }, 
+  
   {
     path: "/init/",
     async: function({router, resolve}) {
@@ -55,6 +48,10 @@ var routes = [
         });
       }, 1000);
     },
+  },
+  {
+    path: "/descargajson/",
+    component: descargaJsonPage,
   },
 
   {
