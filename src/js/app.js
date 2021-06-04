@@ -66,3 +66,22 @@ var app = new Framework7({
 $$(document).on("click", ".btnAlert", function(){
   alert("Alerta desde app.js, mostrado en página");
 });
+
+//DESCARGA JS btnDownloadJson
+const jsonData = {
+  name: "Edward",
+  email: "edward@mail.com",
+  website: "https://github.com/dwaxgio"
+ };
+ 
+ function download(content, fileName, contentType) {
+  const a = document.createElement("a");
+  const file = new Blob([content], { type: contentType });
+  a.href = URL.createObjectURL(file);
+  a.download = fileName;
+  a.click();
+ }
+
+$$(document).on("click", ".btnDownloadJson", function(){
+  download(JSON.stringify(jsonData), "DownloadedJson.json", "text/plain");
+});
