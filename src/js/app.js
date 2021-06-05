@@ -56,13 +56,12 @@ var app = new Framework7({
 });
 
 // ALERTA MANIPULANDO DOM
-// $(document).on("click",".alert-text-title",function() {
-//   alert("Evento desde elemento de formulario");
-// });
 
 $$(document).on("click", ".btnAlert", function () {
   alert("Alerta desde app.js, mostrado en página");
 });
+
+// ALERTA MANIPULANDO DOM /
 
 //DESCARGA JS btnDownloadJson
 
@@ -87,48 +86,58 @@ $$(document).on("click", ".btnAlert", function () {
 
 //DESCARGA JS btnDownloadJson /
 
+// IMPRIMIR VALOR INPUT
+var linkFromInput
+function obtenerInput(){
+  linkFromInput = $$(".inpDownloadJson").val();
+        alert(linkFromInput);
+}
+
+// $$(document).on("click", ".btnDownloadJson", function(){
+//   obtenerInput();
+// });
+
+// IMPRIMIR VALOR INPUT
+
 // EJEMPLO URL
 var jsonUrl =
   "https://prod.bdroppy.com/restful/export/api/products.json?acceptedlocales=en_US,it_IT,fr_FR,de_DE,es_ES,pt_PT&user_catalog=607591f119b28677983ca600&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDc1ODc5NGU5Y2Q3OTc2ZDA0NjJjM2UiLCJpYXQiOjE2MjI4MTY1NTMsImV4cCI6MTYyNTQ5NDk1MywiaXNzIjoiUmVQcm94eSJ9.rcxgvHHa9FcCZF_GiY3BVwzv6t-Dw-rJo8nxHsojYRA";
 
 var jsonUrl2 = 'http://api.open-notify.org/astros.json';
-// $$.getJSON(jsonUrl, function(data){
-//   console.log(data);
-// });
 
-// $$(document).on("click", ".btnDownloadJson", function(){
-//   app.request.json("https://prod.bdroppy.com/restful/export/api/products.json?acceptedlocales=en_US,it_IT,fr_FR,de_DE,es_ES,pt_PT&user_catalog=607591f119b28677983ca600&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDc1ODc5NGU5Y2Q3OTc2ZDA0NjJjM2UiLCJpYXQiOjE2MjI4MTY1NTMsImV4cCI6MTYyNTQ5NDk1MywiaXNzIjoiUmVQcm94eSJ9.rcxgvHHa9FcCZF_GiY3BVwzv6t-Dw-rJo8nxHsojYRA", function(mydata){
-//     //app.data.raise=mydata;
-//     console.log(mydata);
-//   })
-// });
+var jsonUrl3 = linkFromInput;
 
-// app.request.json("https://prod.bdroppy.com/restful/export/api/products.json?acceptedlocales=en_US,it_IT,fr_FR,de_DE,es_ES,pt_PT&user_catalog=607591f119b28677983ca600&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDc1ODc5NGU5Y2Q3OTc2ZDA0NjJjM2UiLCJpYXQiOjE2MjI4MTY1NTMsImV4cCI6MTYyNTQ5NDk1MywiaXNzIjoiUmVQcm94eSJ9.rcxgvHHa9FcCZF_GiY3BVwzv6t-Dw-rJo8nxHsojYRA", function(mydata){
-//     //app.data.raise=mydata;
-//     console.log(mydata);
-//   });
-
-function requestJSON() {
-  // // RETORNA UNDEFINED
-  // app.request.promise.json(jsonUrl)
-  // .then(function (res) {
-  //   console.log(res.data);
-  // });
-
-  // // Ejemplo funcion con boton ***
-  //loadJSON(jsonUrl2, gotData);
-  fetch(jsonUrl2)
+function requestJSON() {  
+  fetch(jsonUrl3)
   .then(response => response.json())
   .then(data => console.log(data));
 }
 
-// // Ejemplo funcion con boton ***
-// $$(document).on("click", ".btnDownloadJson", function gotData(data) {
-//   console.log(data);
-// });
-
 $$(document).on("click", ".btnDownloadJson", function(){
+  obtenerInput();
   requestJSON();
 });
 
 // EJEMPLO URL /
+
+// // EJEMPLO URL DESCARGA
+// const jsonData = {
+//   name: "Edward",
+//   email: "edward@mail.com",
+//   website: "https://github.com/dwaxgio"
+//  };
+
+//  function download(content, fileName, contentType) {
+//   const a = document.createElement("a");
+//   const file = new Blob([content], { type: contentType });
+//   a.href = URL.createObjectURL(file);
+//   a.download = fileName;
+//   a.click();
+//  }
+
+// $$(document).on("click", ".btnDownloadJson", function(){
+//   download(jsonUrl2, "DownloadedJson.json", "text/plain");
+// });
+
+// // EJEMPLO URL DESCARGA /
+
