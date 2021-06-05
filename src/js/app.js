@@ -108,7 +108,7 @@ var jsonUrl2 = 'http://api.open-notify.org/astros.json';
 var jsonUrl3 = linkFromInput;
 
 function requestJSON() {  
-  fetch(jsonUrl3)
+  fetch(linkFromInput)
   .then(response => response.json())
   .then(data => console.log(data));
 }
@@ -116,6 +116,7 @@ function requestJSON() {
 $$(document).on("click", ".btnDownloadJson", function(){
   obtenerInput();
   requestJSON();
+
 });
 
 // EJEMPLO URL /
