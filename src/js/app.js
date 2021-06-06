@@ -105,17 +105,23 @@ var jsonUrl =
 
 var jsonUrl2 = 'http://api.open-notify.org/astros.json';
 
-var jsonUrl3 = linkFromInput;
+//var jsonUrl3 = linkFromInput;
 
 function requestJSON() {  
   fetch(linkFromInput)
   .then(response => response.json())
   .then(data => console.log(data));
+  
+  fetch(linkFromInput)
+  .then(response => response.json())
+  //.then(data => download(data, "DownloadedJson.json", "text/plain"));   // IMPRIME [object Object]
+  .then(data => download(JSON.stringify(data), "DownloadedJson.json", "text/plain"));
 }
 
 $$(document).on("click", ".btnDownloadJson", function(){
   obtenerInput();
   requestJSON();
+  //download(linkFromInput, "DownloadedJson.json", "text/plain");
 
 });
 
@@ -128,13 +134,13 @@ $$(document).on("click", ".btnDownloadJson", function(){
 //   website: "https://github.com/dwaxgio"
 //  };
 
-//  function download(content, fileName, contentType) {
-//   const a = document.createElement("a");
-//   const file = new Blob([content], { type: contentType });
-//   a.href = URL.createObjectURL(file);
-//   a.download = fileName;
-//   a.click();
-//  }
+ function download(content, fileName, contentType) {
+  const a = document.createElement("a");
+  const file = new Blob([content], { type: contentType });
+  a.href = URL.createObjectURL(file);
+  a.download = fileName;
+  a.click();
+ }
 
 // $$(document).on("click", ".btnDownloadJson", function(){
 //   download(jsonUrl2, "DownloadedJson.json", "text/plain");
