@@ -1,0 +1,81 @@
+<template>
+  <div class="page" data-name="barrabusqueda">
+    <div class="navbar">
+      <div class="navbar-bg"></div>
+      <div class="navbar-inner sliding">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="icon icon-back"></i>
+            <span class="if-not-md">Back</span>
+          </a>
+        </div>
+        <div class="title">Search bar</div>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="searchbar-backdrop"></div>
+      <form class="searchbar">
+        <div class="searchbar-inner">
+          <div class="searchbar-input-wrap">
+            <input type="search" placeholder="You can search by Brand or Category" />
+            <i class="searchbar-icon"></i>
+            <span class="input-clear-button"></span>
+          </div>
+          <span class="searchbar-disable-button">Cancel</span>
+        </div>
+      </form>
+
+      <!-- Following block title and block will be hidden on search -->
+      <div class="block-title searchbar-hide-on-search">Some block title</div>
+      <div class="block searchbar-hide-on-search">Lorem ipsum dolor sit amet...</div>
+
+      <!-- We do search in super heroes list so the following title and list must be visible on search -->
+      <div class="block-title searchbar-found">Brand</div>
+      <div class="list simple-list searchbar-found">
+        <ul>
+          <li class="item-content">
+            <div class="item-inner">
+              <div class="item-title">Adidas</div>
+            </div>
+          </li>
+          <li class="item-content">
+            <div class="item-inner">
+              <div class="item-title">Diesel</div>
+            </div>
+          </li>
+          <li class="item-content">
+            <div class="item-inner">
+              <div class="item-title">Gucci</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- This list will be visible when there is not any search results -->
+      <div class="list simple-list searchbar-not-found">
+        <ul>
+          <li>Nothing found</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  export default (props, { $f7, $on }) => {
+    $on('pageInit', () => {
+      // create searchbar
+      var searchbar = $f7.searchbar.create({
+        el: '.searchbar',
+        searchContainer: '.list',
+        searchIn: '.item-title',
+        on: {
+          search(sb, query, previousQuery) {
+            console.log(query, previousQuery);
+          }
+        }
+      });
+    })
+
+    return $render;
+  }
+</script>

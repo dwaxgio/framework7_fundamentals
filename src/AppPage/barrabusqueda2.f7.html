@@ -1,0 +1,160 @@
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  h1 {
+    color: #eee;
+    margin-bottom: 30px;
+  }
+  .container {
+    padding: 40px;
+    margin: 0 auto;
+    max-width: 1000px;
+    text-align: center;
+  }
+
+  #charactersList {
+    padding-inline-start: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-gap: 20px;
+  }
+
+  .character {
+    list-style-type: none;
+    background-color: #eaeaea;
+    border-radius: 3px;
+    padding: 10px 20px;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas:
+      "name image"
+      "house image";
+    text-align: left;
+  }
+
+  .character > h2 {
+    grid-area: name;
+    margin-bottom: 0px;
+  }
+
+  .character > p {
+    grid-area: house;
+    margin: 0;
+    margin-top: -18px;
+  }
+
+  .character > img {
+    max-height: 100px;
+    grid-area: image;
+  }
+
+  #searchBar {
+    width: 100%;
+    height: 32px;
+    border-radius: 3px;
+    border: 1px solid #eaeaea;
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  #searchWrapper {
+    position: relative;
+  }
+
+  #searchWrapper::after {
+    content: "🔍";
+    position: absolute;
+    top: 7px;
+    right: 15px;
+  }
+</style>
+
+<template>
+  <div class="page">
+    <div class="navbar">
+      <div class="navbar-bg"></div>
+      <div class="navbar-inner sliding">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="icon icon-back"></i>
+            <span class="if-not-md">Back</span>
+          </a>
+        </div>
+        <div class="title">JSON Object filter</div>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="block block-strong">
+        <div class="container">
+          <h1>Data filter</h1>
+          <div id="searchWrapper">
+            <input
+              type="text"
+              name="searchBar"
+              id="SearchBar"
+              placeholder="Search for a register"
+            />
+          </div>
+          <ul id="charactersList"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  export default (props, { $f7, $on }) => {
+    $on("pageInit", () => {
+      // PRUEBA SEARCHBAR 2
+      const characterList = document.getElementById("charactersList");
+      const searchBar = document.getElementById("SearchBar");
+      let hpCharacters = [];
+
+      console.log(searchBar);
+
+      // const characterList = $$("#charactersList");
+      // const searchBar = $$("SearchBar");
+      searchBar.addEventListener("keyup", (e) => {
+        //console.log(e.target.value);
+        const searchString = e.target.value.toLowerCase();
+
+        const filteredCharacters = hpCharacters.filter((character) => {
+          return (
+            character.name.toLowerCase().includes(searchString) ||
+            character.house.toLowerCase().includes(searchString)
+          );
+        });
+        console.log(filteredCharacters);
+        displayCharacters(filteredCharacters);
+      });
+
+      const loadCharacters = async () => {
+        try {
+          const res = await fetch("http://hp-api.herokuapp.com/api/characters");
+          hpCharacters = await res.json();
+          displayCharacters(hpCharacters);
+          console.log(hpCharacters);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      const displayCharacters = (characters) => {
+        const htmlString = characters
+          .map((characters) => {
+            return `<li class="character">
+      <h2>${characters.name}</h2>
+      <p>House: ${characters.house}</p>
+      <img src="">${characters.image}</img>
+    </li>`;
+          })
+          .join(``);
+        characterList.innerHTML = htmlString;
+      };
+
+      loadCharacters();
+    });
+
+    return $render;
+  };
+</script>
