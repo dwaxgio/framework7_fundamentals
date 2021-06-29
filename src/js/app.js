@@ -8,6 +8,8 @@ import "framework7/framework7-bundle.css";
 import "../css/icons.css";
 import "../css/app.css";
 
+//import "../../../AppPage/characters.json";
+
 // Import Routes
 import routes from "./routes.js";
 // Import Store
@@ -168,3 +170,12 @@ function download(content, fileName, contentType) {
 // };
 
 // loadCharacters();
+
+
+// PRUEBA CONSUMO JSON
+function ConsumoJson(){
+  app.request.json("characters.json", function(data){
+    console.log(data);
+  });
+}
+ConsumoJson();

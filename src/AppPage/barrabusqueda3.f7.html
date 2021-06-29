@@ -130,10 +130,16 @@
 
       const loadCharacters = async () => {
         try {
-          const res = await fetch("http://hp-api.herokuapp.com/api/characters");
-          hpCharacters = await res.json();
-          displayCharacters(hpCharacters);
-          console.log(hpCharacters);
+          //var _items = JSON.parse(fs.readFileSync(path.join(__dirname, "plyo.json"))).items;
+
+          fetch("./characters.json") //note here the lcoal path is relative to "index.html" instead of "index.js"
+            .then((response) => response.json())
+            .then(json => console.log(json));
+
+          // const res = await fetch("../assets/characters.json");
+          // hpCharacters = await res.json();
+          // displayCharacters(hpCharacters);
+          // console.log(hpCharacters);
         } catch (error) {
           console.log(error);
         }
@@ -143,10 +149,10 @@
         const htmlString = characters
           .map((characters) => {
             return `<li class="character">
-              <h2>${characters.name}</h2>
-              <p>House: ${characters.house}</p>
-              <img src="">${characters.image}</img>
-            </li>`;
+      <h2>${characters.name}</h2>
+      <p>House: ${characters.house}</p>
+      <img src="">${characters.image}</img>
+    </li>`;
           })
           .join(``);
         characterList.innerHTML = htmlString;

@@ -1,0 +1,74 @@
+<template>
+  <div class="page" data-page="home">
+    <div class="navbar">
+      <div class="navbar-bg"></div>
+      <div class="navbar-inner">
+        <div class="title sliding">Infinite Scroll</div>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="container">
+        <h1>Infinite Scroll</h1>
+<!--    The First Div      -->
+        <div class="text">
+            <h1>Lorem ipsum dolor sit amet</h1>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque eos, atque sed saepe
+               tempore, sequi qui excepturi voluptate ut perspiciatis culpa sit harum, corrupti ullam 
+               voluptatibus obcaecati sint dignissimos quas.</p>
+        </div>
+<!--    The Second Div      -->
+        <div class="text">
+            <h1>Lorem ipsum dolor sit amet</h1>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque eos, atque sed saepe
+               tempore, sequi qui excepturi voluptate ut perspiciatis culpa sit harum, corrupti ullam 
+               voluptatibus obcaecati sint dignissimos quas.</p>
+        </div>
+<!--    The Third Div      -->
+        <div class="text">
+            <h1>Lorem ipsum dolor sit amet</h1>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque eos, atque sed saepe
+               tempore, sequi qui excepturi voluptate ut perspiciatis culpa sit harum, corrupti ullam 
+               voluptatibus obcaecati sint dignissimos quas.</p>
+        </div>
+    </div>
+<!--  The Loading Animation.    -->
+    <div class="loading">
+        <div class="ball first"></div>
+        <div class="ball second"></div>
+        <div class="ball third"></div>
+    </div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+   export default (props, { $f7, $on }) => {
+    $on("pageInit", () => {
+// Selecting The Container.
+const container = document.querySelector('.container');
+// The Scroll Event.
+window.addEventListener('scroll',()=>{
+	const {scrollHeight,scrollTop,clientHeight} = document.documentElement;
+	if(scrollTop + clientHeight > scrollHeight - 5){
+		setTimeout(createPost,2000);
+
+	}
+});
+// The createPost function creates The HTML for the blog post.
+// It append it to the container.
+function createPost(){
+	const post = document.createElement('div');
+	post.className = 'text';
+	post.innerHTML = `<h1>Lorem ipsum dolor sit amet</h1>
+	<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque eos, atque sed saepe
+	   tempore, sequi qui excepturi voluptate ut perspiciatis culpa sit harum, corrupti ullam 
+	   voluptatibus obcaecati sint dignissimos quas.</p>`;
+//   Appending the post to the container.
+	container.appendChild(post);
+}
+
+    });
+
+return $render;
+};
+</script>

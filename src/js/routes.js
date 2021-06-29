@@ -7,6 +7,11 @@ import initPage from "../AppPage/init.f7.html";
 import descargaJsonPage from "../AppPage/descargajson.f7.html";
 import barrabusquedaPage from "../AppPage/barrabusqueda.f7.html";
 import barrabusqueda2Page from "../AppPage/barrabusqueda2.f7.html";
+import barrabusqueda3Page from "../AppPage/barrabusqueda3.f7.html";
+import barrabusqueda3json from "../AppPage/characters.json";
+import infinitescroll from "../AppPage/infinitescroll.f7.html";
+import infinitescroll2 from "../AppPage/infinitescroll2.f7.html";
+import infinitescroll3 from "../AppPage/infinitescroll3.f7.html";
 
 import DynamicRoutePage from "../pages/dynamic-route.f7.html";
 import RequestAndLoad from "../pages/request-and-load.f7.html";
@@ -62,6 +67,26 @@ var routes = [
   {
     path: "/barrabusqueda2/",
     component: barrabusqueda2Page,
+  },
+  {
+    path: "/barrabusqueda3/",
+    component: barrabusqueda3Page,
+  },
+  {
+    path: "/characters/",
+    component: barrabusqueda3json,
+  },
+  {
+    path: "/infinitescroll/",
+    component: infinitescroll,
+  },
+  {
+    path: "/infinitescroll2/",
+    component: infinitescroll2,
+  },
+  {
+    path: "/infinitescroll3/",
+    component: infinitescroll3,
   },
 
   {
